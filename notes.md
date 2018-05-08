@@ -14,3 +14,8 @@ This module is in development. The features here are planned.
   - Calculate word length.
   - Rank resulting available domains.
   - Output a report of top available domains.
+  
+## Dependencies
+
+- Pandas
+- pythonwhois
