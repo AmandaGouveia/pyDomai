@@ -1,6 +1,8 @@
 # pyDomai
 A tool to find and rank available domain names.
 
+Right now this tool works if you modify the source code. You can put a list of words in the *testwords* file and change the points and domains searched by modifying those sections of code.
+
 *This tool is under construction.*
 
 <p align="center">

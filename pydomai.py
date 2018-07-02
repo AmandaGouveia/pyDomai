@@ -7,10 +7,30 @@ import pandas as pd
 import pythonwhois as who
 import re
 
-cleaner = lambda x: re.sub("[^A-Za-z1-9]+", "", str(x)).lower()
-
 domain_points = {"com": 3, "ink": 2, "codes": 2}
 length_points = {7: 1, 5: 3, 4: 6}
+
+domains = [
+    "com",
+    "net",
+    "app",
+    "org",
+    "club",
+    "online",
+    "io",
+    "cafe",
+    "click",
+    "city",
+    "cloud",
+    "codes",
+    "dog",
+    "fish",
+    "fishing",
+    "garden",
+    "ink",
+]
+
+cleaner = lambda x: re.sub("[^A-Za-z1-9]+", "", str(x)).lower()
 
 
 def is_available(word, domain):
@@ -49,25 +69,6 @@ def points(row):
 
 # wordlist = "/usr/share/dict/words"
 wordlist = "./testwords"
-
-domains = [
-    "com",
-    "net",
-    "app",
-    "org",
-    "club",
-    "online",
-    "io",
-    "cafe",
-    "click",
-    "city",
-    "cloud",
-    "codes",
-    "dog",
-    "fish",
-    "fishing",
-    "garden",
-]
 
 words = pd.read_csv(wordlist)
 words.columns = ["Word"]
