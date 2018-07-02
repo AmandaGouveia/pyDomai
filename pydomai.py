@@ -9,6 +9,9 @@ import re
 
 cleaner = lambda x: re.sub("[^A-Za-z1-9]+", "", str(x)).lower()
 
+domain_points = {"com": 3, "ink": 2, "codes": 2}
+length_points = {7: 1, 5: 3, 4: 6}
+
 
 def is_available(word, domain):
     """checks if the domain is available"""
@@ -16,11 +19,14 @@ def is_available(word, domain):
         x = who.get_whois(word + "." + domain)
     except:
         return False
+
     try:
-        y = x['expiration_date']
+        y = x["expiration_date"]
         return False
+
     except:
         return True
+
     return True
 
 
@@ -29,21 +35,39 @@ def points(row):
     word = row["word"]
     domain = row["domain"]
     points = 0
-    if domain == "com":
-        points += 3
-    if len(word) < 7:
-        points += 3
-    if len(word) < 5:
-        points += 3
-    if len(word) < 4:
-        points += 3
+    try:
+        points += domain_points[domain]
+    except:
+        pass
+    try:
+        points += length_points[len(word)]
+    except:
+        pass
+
     return points
 
 
-#wordlist = "/usr/share/dict/words"
+# wordlist = "/usr/share/dict/words"
 wordlist = "./testwords"
 
-domains = ["com", "net","app","org","club","online","io","cafe","click","city","cloud","codes","dog","fish","fishing","garden"]
+domains = [
+    "com",
+    "net",
+    "app",
+    "org",
+    "club",
+    "online",
+    "io",
+    "cafe",
+    "click",
+    "city",
+    "cloud",
+    "codes",
+    "dog",
+    "fish",
+    "fishing",
+    "garden",
+]
 
 words = pd.read_csv(wordlist)
 words.columns = ["Word"]
