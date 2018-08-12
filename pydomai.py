@@ -15,19 +15,19 @@ domains = [
     "net",
     "app",
     "org",
-    #    "club",
-    #    "online",
-    #    "io",
-    #    "cafe",
-    #    "click",
+#    "club",
+#    "online",
+#    "io",
+#    "cafe",
+#    "click",
     "city",
     "cloud",
     "codes",
-    #    "dog",
-    #    "fish",
-    #    "fishing",
+#    "dog",
+#    "fish",
+#    "fishing",
     "garden",
-    #    "ink",
+#    "ink",
 ]
 
 cleaner = lambda x: re.sub("[^A-Za-z1-9]+", "", str(x)).lower()
@@ -83,4 +83,4 @@ for word in words["Word"]:
 df = pd.DataFrame.from_records(urls, columns=["word", "domain"])
 df["points"] = df.apply(points, axis=1)
 df.sort_values(by="points", ascending=False, inplace=True)
-print(df.head())
+print(df.head(10))
