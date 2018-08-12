@@ -2,12 +2,13 @@
 
 A tool for checking available domain names.
 """
+### Available at github.com/AmandaGouveia/pyDomai
 
 import pandas as pd
 import pythonwhois as who
 import re
 
-domain_points = {"com": 3, "ink": 2, "codes": 2}
+domain_points = {"com": 3, "cafe": 1, "codes": 2}
 length_points = {7: 1, 5: 3, 4: 6}
 
 domains = [
@@ -15,19 +16,13 @@ domains = [
     "net",
     "app",
     "org",
-#    "club",
-#    "online",
-#    "io",
-#    "cafe",
-#    "click",
+    "io",
+    "cafe",
+    "click",
     "city",
     "cloud",
     "codes",
-#    "dog",
-#    "fish",
-#    "fishing",
     "garden",
-#    "ink",
 ]
 
 cleaner = lambda x: re.sub("[^A-Za-z1-9]+", "", str(x)).lower()
@@ -83,4 +78,7 @@ for word in words["Word"]:
 df = pd.DataFrame.from_records(urls, columns=["word", "domain"])
 df["points"] = df.apply(points, axis=1)
 df.sort_values(by="points", ascending=False, inplace=True)
-print(df.head(10))
+#print(df.head(10))
+print('Your Top Available Domains\n--------------------------')
+for x in range(10):
+    print(df.iloc[x,0] + '.' + df.iloc[x,1])
